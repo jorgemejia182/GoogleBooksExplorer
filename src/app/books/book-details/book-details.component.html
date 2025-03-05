@@ -1,0 +1,26 @@
+<mat-card *ngIf="book">
+    <mat-card-title>{{ book?.volumeInfo?.title }}</mat-card-title>
+    <mat-card-content>
+        <p><strong>Author(s):</strong> {{ book?.volumeInfo?.authors?.join(', ') }}</p>
+        <p><strong>Description:</strong> {{ book?.volumeInfo?.description }}</p>
+        <p><strong>Publisher:</strong> {{ book?.volumeInfo?.publisher }}</p>
+        <p><strong>Published Date:</strong> {{ book?.volumeInfo?.publishedDate }}</p>
+        <p><strong>Page Count:</strong> {{ book?.volumeInfo?.pageCount }}</p>
+        <p><strong>Categories:</strong> {{ book?.volumeInfo?.categories?.join(', ') }}</p>
+        <a [href]="book?.volumeInfo?.previewLink" target="_blank">Preview Book</a>
+
+        <mat-divider></mat-divider>
+
+        <div *ngIf="book?.saleInfo?.saleability === 'FOR_SALE'">
+            <p><strong>Price:</strong> {{ book?.saleInfo?.retailPrice?.amount }} {{
+                book?.saleInfo?.retailPrice?.currencyCode }}</p>
+            <div *ngIf="book?.saleInfo?.retailPrice?.currencyCode === 'USD'">
+                <p><strong>Price (MXN):</strong> {{ convertedPrice || 'Loading...' }} MXN</p>
+            </div>
+        </div>
+
+        <div *ngIf="book?.saleInfo?.saleability !== 'FOR_SALE'">
+            <p>This book is not for sale.</p>
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,47 @@
+<h2>Search Books</h2>
+
+<form (ngSubmit)="onSearch()">
+  <mat-form-field appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput [(ngModel)]="searchQuery" name="searchQuery" placeholder="Enter book title, author, or keyword" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Language</mat-label>
+    <mat-select [(ngModel)]="language" name="language">
+      <mat-option value="">Any</mat-option>
+      <mat-option value="en">English</mat-option>
+      <mat-option value="es">Spanish</mat-option>
+      <mat-option value="fr">French</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Print Type</mat-label>
+    <mat-select [(ngModel)]="printType" name="printType">
+      <mat-option value="all">All</mat-option>
+      <mat-option value="books">Books</mat-option>
+      <mat-option value="magazines">Magazines</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Sort Order</mat-label>
+    <mat-select [(ngModel)]="sortOrder" name="sortOrder">
+      <mat-option value="relevance">Relevance</mat-option>
+      <mat-option value="newest">Newest</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Search</button>
+</form>
+
+<div *ngIf="books.length > 0">
+  <h3>Results</h3>
+  <ul>
+    <li *ngFor="let book of books">
+      <strong>{{ book.volumeInfo.title }}</strong> by {{ book.volumeInfo.authors?.join(', ') }}
+      <button mat-raised-button color="accent" [routerLink]="['/book', book.id]">View Details</button>
+    </li>
+  </ul>
+</div>
