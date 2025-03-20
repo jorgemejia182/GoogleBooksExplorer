@@ -3,12 +3,21 @@
     <mat-card-content>
         <p><strong>Author(s):</strong> {{ book?.volumeInfo?.authors?.join(', ') }}</p>
         <!-- @TODO -->
-         <!-- Ver la manera de sanitizar este string o inyectarlo como html ya que retorna una estrucuta con etiquetas  -->
+         <!-- No es buena práctica utilizar métodos javascript en el template 
+          (Angular evaluará esto en cada cambio de detección (cada evento, input, interacción, etc.),
+           lo que puede afectar el rendimiento si hay muchas evaluaciones.),
+             es mejor hacerlo en el typescript o en su defecto utilizar pipes
+           -->
         <p><strong>Description:</strong> {{ book?.volumeInfo?.description }}</p>
+        <!-- @TODO -->
+         <!-- Ver la manera de sanitizar o inyectar el atributo description como html, 
+          este string en algunas ocasiones retorna el string junto con etiquetas html -->
         <p><strong>Publisher:</strong> {{ book?.volumeInfo?.publisher }}</p>
         <p><strong>Published Date:</strong> {{ book?.volumeInfo?.publishedDate }}</p>
         <p><strong>Page Count:</strong> {{ book?.volumeInfo?.pageCount }}</p>
         <p><strong>Categories:</strong> {{ book?.volumeInfo?.categories?.join(', ') }}</p>
+        <!-- @TODO -->
+        <!-- Lo mismo de la línea 4 -->
         <a [href]="book?.volumeInfo?.previewLink" target="_blank">Preview Book</a>
 
         <mat-divider></mat-divider>
@@ -18,6 +27,8 @@
                 book?.saleInfo?.retailPrice?.currencyCode }}</p>
             <div *ngIf="book?.saleInfo?.retailPrice?.currencyCode === 'USD'">
                 <p><strong>Price (MXN):</strong> {{ convertedPrice || 'Loading...' }} MXN</p>
+                <!-- @TODO -->
+                <!-- Aquí pudiste utilizar la pipe de currency para dar formato de moneda -->
             </div>
         </div>
 
