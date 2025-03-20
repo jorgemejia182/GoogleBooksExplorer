@@ -39,6 +39,8 @@ export class BookDetailsComponent {
           }
           return of(null);
         })
+      //@TODO
+      /** Hay que hacer el unsubscribe ya que si no se da la esta instrucción, esta subscripción queda en memoria */  
       ).subscribe((convertedPrice: number | null) => {
         this.convertedPrice = convertedPrice;
       });

@@ -36,6 +36,8 @@ export class BookSearchComponent {
 
   onSearch() {
     this.bookService.searchBooks(this.searchQuery, this.language, this.printType, this.sortOrder)
+    //@TODO
+      /** Hay que hacer el unsubscribe ya que si no se da la esta instrucción, esta subscripción queda en memoria */  
       .subscribe((response: any) => {
         this.books = response.items || [];
       });

@@ -2,6 +2,8 @@
     <mat-card-title>{{ book?.volumeInfo?.title }}</mat-card-title>
     <mat-card-content>
         <p><strong>Author(s):</strong> {{ book?.volumeInfo?.authors?.join(', ') }}</p>
+        <!-- @TODO -->
+         <!-- Ver la manera de sanitizar este string o inyectarlo como html ya que retorna una estrucuta con etiquetas  -->
         <p><strong>Description:</strong> {{ book?.volumeInfo?.description }}</p>
         <p><strong>Publisher:</strong> {{ book?.volumeInfo?.publisher }}</p>
         <p><strong>Published Date:</strong> {{ book?.volumeInfo?.publishedDate }}</p>
